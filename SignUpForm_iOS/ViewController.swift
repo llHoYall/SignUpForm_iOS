@@ -8,8 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITextFieldDelegate {
+	@IBOutlet weak var nameTextField: UITextField!
+	@IBOutlet weak var emailTextField: UITextField!
+	@IBOutlet weak var pwdTextField: UITextField!
+	@IBOutlet weak var telTextField: UITextField!
+	@IBOutlet weak var blogTextField: UITextField!
+	@IBOutlet weak var outputTextView: UITextView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +25,17 @@ class ViewController: UIViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
+	
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
 
-
+	@IBAction func signupAction(_ sender: Any) {
+		outputTextView.text = "Welcome to \(nameTextField.text!) !"
+	}
 }
-
